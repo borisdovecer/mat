@@ -1,0 +1,38 @@
+<!doctype html>
+<html class="no-js" lang="en">
+<head>
+    <% include partials/scripts.ejs %>
+</head>
+<body>
+<!-- Header -->
+<% include partials/header.ejs %>
+
+<!-- Classes Start -->
+<section class="class-area fix bg-gray pb-100 pt-95">
+    <div class="container">
+        <% if(data) {%>
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-xs-12">
+                <div class="section-title text-center">
+                    <h2><%= data[0].title %></h2>
+                    <img src="/images/class/<%= data[0].image %>" alt="about">
+                    <p><%- data[0].description %></p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 text-center">
+                <a class="banner-btn mt-55" href="/#program" data-text="nazad"><span>nazad</span></a>
+            </div>
+        </div>
+    </div>
+    <% } %>
+</section>
+<!-- Class Area End -->
+
+<% include partials/footer.ejs %>
+<% include partials/footerscripts.ejs%>
+
+
+</body>
+</html>

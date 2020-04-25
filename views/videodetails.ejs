@@ -1,0 +1,53 @@
+<!doctype html>
+<html class="no-js" lang="en">
+<head>
+    <% include partials/scripts.ejs %>
+</head>
+<body>
+<!-- Header -->
+<% include partials/header.ejs %>
+
+<!-- Classes Start -->
+<section class="class-area fix bg-gray pb-100 pt-95">
+    <div class="container">
+
+        <div class="row">
+            <% if (data){ %>
+            <% data.forEach(function (video) {  %>
+            <div class="col-lg-offset-2 col-md-offset-2 col-md-8 col-sm-8 col-xs-12">
+                <div class="single-class">
+                    <div class="about-video active" style="width: 100%;">
+                        <div class="game">
+                            <a href="#"><img src="<%= video.image %>" alt="about"></a>
+                        </div>
+                        <div class="video-icon video-hover">
+                            <a class="video-popup" href="<%= video.url %>">
+                                <i class="zmdi zmdi-play"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="single-content">
+                            <h3><a href="/"><%= video.title %></a> </h3>
+                        <ul>
+                            <li><%= video.description %></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+            <% })} %>
+
+        <div class="row">
+            <div class="col-xs-12 text-center">
+                <a class="banner-btn mt-55" href="/videos" data-text="nazad"><span>nazad</span></a>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Class Area End -->
+
+<% include partials/footer.ejs %>
+<% include partials/footerscripts.ejs%>
+
+</body>
+</html>

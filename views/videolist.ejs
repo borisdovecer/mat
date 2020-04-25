@@ -1,0 +1,88 @@
+<!doctype html>
+<html class="no-js" lang="en">
+<head>
+    <% include partials/scripts.ejs %>
+</head>
+<body>
+<!-- Header -->
+<% include partials/header.ejs %>
+
+<!-- Classes Start -->
+<section class="class-area fix bg-gray pb-100 pt-95">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-xs-12">
+                <div class="section-title text-center">
+                    <h2>Videos</h2>
+                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum issss has been the industry's standard dummy text ever since the 1500s, when an unknown lorem </p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <% if (data){ %>
+            <% data.forEach(function (video) {  %>
+            <div class="col-md-4 col-sm-6 col-xs-12" style="padding-bottom: 30px">
+                <div class="single-class ">
+                    <div class="about-video active">
+                        <div class="game">
+                            <div class="single-slide hidden-xs hidden-md" style="background-image: url('<%= video.image %>'); width: 360px; height: 200px;"></div>
+                            <img class="visible-xs visible-md" src="<%= video.image %>"/>
+                        </div>
+                        <% if (!video.premium ) {%>
+
+
+                        <div class="video-icon video-hover ">
+
+                            <a class="video-popup" href="<%= video.url %>">
+                                <i class="zmdi zmdi-play"></i>
+                            </a>
+                        </div>
+                        <% }  else if(user && user.role === 'premium') { %>
+                        <div class="video-icon video-hover ">
+
+                            <a class="video-popup" href="<%= video.url %>">
+                                <i class="zmdi zmdi-play"></i>
+                            </a>
+                        </div>
+                        <% } else { %>
+                        <div class="video-icon video-hover ">
+
+                            <a  href="program/online-trening">
+                                <i class="zmdi zmdi-lock-outline"></i>
+                            </a>
+                        </div>
+                        <% } %>
+                    </div>
+                    <div class="single-content">
+                        <% if(!video.premium){%>
+                        <h3><a href="/videos/<%= video._id %>"><%= video.title %></a></h3>
+                        <%} else if(user && user.role === 'premium') { %>
+                        <h3><a href="/videos/<%= video._id %>"><%= video.title %></a></h3>
+                        <% } else { %>
+                        <h3><%= video.title %></h3>
+                        <% } %>
+
+                        <ul>
+                            <li><%= video.description %></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <% })} %>
+
+
+        </div>
+        <div class="row">
+            <div class="col-xs-12 text-center">
+                <a class="banner-btn mt-55" href="#" data-text="1"><span>1</span></a>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Class Area End -->
+
+<% include partials/footer.ejs %>
+<% include partials/footerscripts.ejs%>
+
+</body>
+</html>

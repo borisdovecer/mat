@@ -1,0 +1,40 @@
+<!-- All js here -->
+<script src="/js/vendor/jquery-1.12.4.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/owl.carousel.min.js"></script>
+<script src="/js/jquery.meanmenu.js"></script>
+<script src="/js/ajax-mail.js"></script>
+<script src="/js/jquery.ajaxchimp.min.js"></script>
+<script src="/js/slick.min.js"></script>
+<script src="/js/imagesloaded.pkgd.min.js"></script>
+<script src="/js/isotope.pkgd.min.js"></script>
+<script src="/js/jquery.magnific-popup.js"></script>
+<script src="/js/plugins.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyClvRxxMn2jH_tZ3Ky7mlpU7abvqpTOOCU "></script>
+<script>
+    function initialize() {
+        var mapOptions = {
+            zoom: 15,
+            scrollwheel: false,
+            center: new google.maps.LatLng(44.797409, 20.493037)
+        };
+
+        var map = new google.maps.Map(document.getElementById('googleMap'),
+            mapOptions);
+
+
+        var marker = new google.maps.Marker({
+            position: map.getCenter(),
+            animation:google.maps.Animation.BOUNCE,
+            icon: '/images/map-marker.png',
+            map: map
+        });
+
+    }
+
+    google.maps.event.addDomListener(window, 'load', initialize);
+</script>
+<script src="/js/main.js"></script>
+<script src="/js/jquery-2.2.4.min.js"></script>
+<script src="/js/pluginss.js"></script>
+<script src="/js/functions.js"></script>

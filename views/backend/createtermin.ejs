@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <% include ../partials/scripts.ejs %>
+
+
+
+</head>
+<body class="animsition">
+<div class="shop-layout-3" id="page">
+    <% include ../partials/header.ejs %>
+
+    <section >
+        <div class="container" style="width: 100%">
+            <div class="row">
+                <% include ../partials/adminheader.ejs %>
+
+
+                <div class="col-md-8">
+
+                    <div class="container text-left">
+
+                        <div class="row form-contact" style="margin-right: 150px">
+                            <div class="row main">
+                                <form action='/admin/create' method='post'>
+                                    <div class="col-md-6">
+                                        <div class="form-group organic-form xs-radius">
+                                            <label>Title: </label>
+                                            <input class="form-control" name="title" id="title" type="text">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group organic-form xs-radius">
+                                            <label>Trener: </label>
+                                            <input class="form-control"  name="trainer" id="trainer" type="text" >
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group organic-form xs-radius">
+                                            <label>Vreme: </label>
+                                            <select  class="form-control" name="time" id="time">
+
+                                            <option value="8:00-10:00">8:00-10:00</option>
+                                                <option value="12:00-14:00">12:00-14:00</option>
+                                                <option value="15:00-17:00">15:00-17:00</option>
+                                                <option value="18:00-20:00">18:00-20:00</option>
+                                            </select>
+
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group organic-form xs-radius">
+                                            <label>Dan: </label>
+                                            <select  class="form-control" name="day" id="day">
+                                                <option value="1">Ponedeljak</option>
+                                                <option value="2">Utorak</option>
+                                                <option value="3">Sreda</option>
+                                                <option value="4">Četvrtak</option>
+                                                <option value="5">Petak</option>
+                                                <option value="6">Subota</option>
+                                                <option value="7">Nedelja</option>
+                                            </select>
+
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group organic-form xs-radius">
+                                            <label>Boja: </label>
+                                            <select  class="form-control" name="color" id="color">
+                                                <option value="purple">purple</option>
+                                                <option value="olive">olive</option>
+                                                <option value="blue">blue</option>
+                                                <option value="pink">pink</option>
+                                            </select>
+
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-12">
+                                        <div class="form-group organic-form xs-radius">
+                                            <button class="btn btn-brand pill" type="submit" name="Submit">ADD Termin</button>
+                                        </div>
+                                    </div>
+                                </form>
+
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+    </section>
+</div>
+<% include ../partials/footer.ejs %>
+
+</body>
+</html>
+
+
+

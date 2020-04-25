@@ -1,0 +1,40 @@
+<!doctype html>
+<html class="no-js" lang="en">
+<head>
+    <% include partials/scripts.ejs %>
+</head>
+<body>
+<!-- Header -->
+<% include partials/header.ejs %>
+
+<!-- Classes Start -->
+<section class="class-area fix bg-gray pb-100 pt-95">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-xs-12">
+        <div class="section-title text-center">
+          <h2>Profilna Stranica Korisnika</h2>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12 text-center">
+        <% if (data) {%>
+        <p><%= data[0].firstname %> <%= data[0].lastname %></p>
+        <p><%= data[0].email %></p>
+        <p><%= data[0].role %></p>
+        <p><%= moment(data[0].expireOn).format("DD MMM YY");%></p>
+        <% } %>
+
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Class Area End -->
+
+<% include partials/footer.ejs %>
+<% include partials/footerscripts.ejs%>
+
+
+</body>
+</html>

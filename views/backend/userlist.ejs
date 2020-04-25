@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <% include ../partials/scripts.ejs %>
+
+
+
+</head>
+<body class="animsition">
+<div class="shop-layout-3" id="page">
+    <% include ../partials/header.ejs %>
+
+    <section >
+        <div class="container" style="width: 100%">
+            <div class="row">
+                <% include ../partials/adminheader.ejs %>
+
+
+                <div class="col-md-8">
+
+                    <div class="container text-left">
+
+                        <div class="row form-contact" style="margin-right: 150px">
+                            <div class="row main">
+                                <h3 style="padding-bottom: 10px">Lista Korisnika</h3>
+                                <table class="shop_attributes table table-striped table-bordered">
+                                    <tbody>
+                                    <tr style='text-align:left; background-color:#CCC'>
+                                        <th>Username</th>
+                                        <th>Ime I prezime</th>
+                                        <th>Email</th>
+                                        <th>Status</th>
+                                        <th>Expire</th>
+                                    </tr>
+
+                                    <% if(data) { %>
+                                    <% data.forEach(function (user) { %>
+
+
+                                    <tr>
+                                        <td><%= user.username %></td>
+                                        <td><%= user.firstname %> <%= user.lastname %></td>
+                                        <td><%= user.email %></td>
+                                        <td>
+                                            <form action="/admin/users/update/<%= user._id %>" method="post">
+                                                <div class="col-md-4">
+                                                    <select  class="form-control" name="role" id="role">
+                                                        <option value="<%= user.role %>"><%= user.role %></option>
+                                                        <option value="premium">Premium</option>
+                                                        <option value="regular">Regular</option>
+                                                        <option value="admin">Admin</option>
+                                                    </select>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <button  type="submit" name="Submit">Change</button>
+                                                </div>
+                                            </form>
+
+                                        </td>
+                                        <td><%= moment(user.expireOn).format("DD MMM YY");%></td>
+
+
+                                    </tr>
+                                    <% })} %>
+
+                                    </tbody>
+                                </table>
+
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+    </section>
+</div>
+<% include ../partials/footer.ejs %>
+
+</body>
+</html>
+
+
+

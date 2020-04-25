@@ -1,0 +1,76 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <% include ../partials/scripts.ejs %>
+
+
+
+</head>
+<body class="animsition">
+<div class="shop-layout-3" id="page">
+    <% include ../partials/header.ejs %>
+
+    <section >
+        <div class="container" style="width: 100%">
+            <div class="row">
+                <% include ../partials/adminheader.ejs %>
+
+
+                <div class="col-md-8">
+
+                    <div class="container text-left">
+
+                        <div class="row form-contact" style="margin-right: 150px">
+                            <div class="row main">
+                                <h3 style="padding-bottom: 10px">Programi</h3>
+                                <a  href="/admin/program/create"><button class="btn btn-brand pill">Novi Program</button></a>
+                                <table class="shop_attributes table table-striped table-bordered">
+                                    <tbody>
+                                    <tr style='text-align:left; background-color:#CCC'>
+                                        <th>Title</th>
+                                        <th>Description</th>
+                                        <th>img</th>
+                                        <th>Action</th>
+                                    </tr>
+
+                                    <% if(data) { %>
+                                    <% data.forEach(function (program) { %>
+                                    <tr>
+                                        <td><%= program.title %></td>
+                                        <td><%= program.description.slice(0,80)%>...</td>
+                                        <td><%= program.image %></td>
+
+                                        <td>
+                                            <div style="float:left">
+                                                <a  href="/admin/program/<%= program._id %>"><button class="btn btn-info">Edit</button></a>
+                                                <form method="post" action="/admin/video/delete/4" style="float:right">
+                                                    <input type="submit" class="btn btn-danger" name="delete" value='Delete' onClick="return confirm('Are you sure you want to delete?')" />
+                                                    <input type="hidden" name="_method" value="DELETE" />
+                                                </form>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <% })} %>
+
+                                    </tbody>
+                                </table>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+    </section>
+</div>
+<% include ../partials/footer.ejs %>
+
+</body>
+</html>
+
+
+

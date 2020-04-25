@@ -1,0 +1,53 @@
+<!-- Header Area Start -->
+<header class="top">
+    <div class="header-area ptb-18 header-sticky">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-2 col-xs-12">
+                    <div class="logo">
+                        <a href="/"><img src="/images/logo/logo2.png" alt="COFFEE" style="max-width: 88%;" /></a>
+                    </div>
+                </div>
+                <div class="col-md-8 col-xs-12">
+                    <div class="content-wrapper">
+                        <!-- Main Menu Start -->
+                        <div class="main-menu text-center">
+                            <nav>
+                                <ul>
+                                    <li><a href="/about">O nama</a></li>
+                                    <li><a href="/#program">Program</a></li>
+                                    <li><a href="/videos">Online Trening</a></li>
+                                    <li><a href="/#ponuda">Ponuda</a></li>
+                                    <li><a href="/#gallery">Galerija</a></li>
+                                    <% if (user) { %>
+                                    <li><a href="/profile">Profil</a></li>
+                                    <li class="hidden-lg hidden-md"><a href="/logout">Logout</a></li>
+                                    <% if(user.role === 'admin'){ %>
+                                    <li><a href="/admin">Admin</a></li>
+
+                                    <% } %>
+
+                                    <% } else { %>
+                                    <li class="hidden-lg hidden-md"><a href="/login">Login</a></li>
+                                    <% } %>
+                                </ul>
+                            </nav>
+                        </div>
+                        <div class="mobile-menu hidden-lg hidden-md"></div>
+                        <!-- Main Menu End -->
+                    </div>
+                </div>
+                <div class="col-md-2 hidden-sm hidden-xs">
+                    <div class="header-contact text-right">
+                        <% if (user) { %>
+                        <a class="banner-btn" data-text="Logout" href="/logout"><span>Logout</span></a>
+                        <% } else { %>
+                        <a class="banner-btn" data-text="Login" href="/login"><span>Login</span></a>
+                        <% } %>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<!-- Header Area End -->
