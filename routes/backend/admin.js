@@ -30,6 +30,7 @@ router.post('/videos/:id', isAdmin, videoController.video_update_post);
 router.post('/videos/delete/:id', isAdmin, videoController.video_delete_post);
 
 router.get('/users', isAdmin, userController.user_list_get);
+router.get('/users/:id', isAdmin, userController.user_detail_get);
 router.post('/users/update/:id',isAdmin, userController.user_update_post);
 
 router.get('/program',isAdmin, programController.program_list_get);

@@ -39,6 +39,23 @@ exports.user_list_get = function(req, res) {
     });
 };
 
+// Display detail page for a specific Author.
+exports.user_detail_get = function(req, res) {
+    var o_id = new ObjectId(req.params.id);
+    User.find({"_id": o_id}, function(err, result) {
+        if (err) {
+            console.log(err);
+        } else  {
+            res.render('backend/userdetails', {
+                title: 'MAT pilates',
+                data: result,
+                moment: moment,
+                user: req.user
+            })
+        }
+    })
+};
+
 exports.user_update_post = function(req, res) {
     var o_id = new ObjectId(req.params.id);
     var role = req.body.role;
