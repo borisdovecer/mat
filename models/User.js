@@ -34,6 +34,15 @@ var userSchema = new schema({
     },
     expireOn: {
         type: Date
+    },
+    membershipExpireOn: {
+        type: Date
+    },
+    brojTermina:{
+        type: Number
+    },
+    prisustvo: {
+        type: Array
     }
 });
 

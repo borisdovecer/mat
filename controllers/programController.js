@@ -1,55 +1,49 @@
 var ObjectId = require('mongodb').ObjectId;
 var Program = require('../models/programModel');
 
-
-
-// Renderovanje stranice o nama
+// Front
+// Detalji programa
 exports.program_details_get = function (req, res) {
     var slug = req.params.slug;
     Program.find({'slug': slug }, function (err, result) {
-
         res.render('programdetails', {
-            title: 'Add New item',
+            title: 'MAT Pilates',
             data: result,
             user: req.user
-
         })
     })
 };
 
-
-
-
-
 // Admin panel
-// renderovanje liste videa
+// Lista programa GET
 exports.program_list_get = function(req, res) {
     Program.find({}, function (err, result) {
         res.render('backend/programlist', {
-            title: 'Add New Video',
+            title: 'MAT Pilates',
             data: result,
             user: req.user
         })
     });
 };
 
-// Display Item create form on GET. back
+// Kreiranje programa GET
 exports.program_create_get = function(req, res) {
     res.render('backend/createprogram', {
-        title: 'Add New item',
+        title: 'MAT Pilates',
         user: req.user
 
     })
 };
 
+// Kreiranje programa POST
 exports.program_create_post = function(req, res) {
     var today = new Date();
     var program = {
         title: req.body.title,
         description: req.body.description,
+        time: req.body.time,
         image: req.body.image
     };
-
 
     Program.findOne({
         title: program.title
@@ -65,24 +59,22 @@ exports.program_create_post = function(req, res) {
                 record.title = program.title;
                 record.description = program.description;
                 record.image = program.image;
+                record.time = program.time;
                 record.createdOn = today;
 
-                record.save(function (err, items) {
+                record.save(function (err, prog) {
                     if (err) {
                         res.status(500).send('db error')
                     } else {
                         res.redirect('/admin/program')
                     }
                 })
-
             }
         }
     })
 };
 
-
-
-// Handle Item delete on POST.
+// Brisanje programa POST.
 exports.program_delete_post = function(req, res) {
     var o_id = new ObjectId(req.params.id);
     Program.remove({"_id": o_id}, function(err, result) {
@@ -90,31 +82,32 @@ exports.program_delete_post = function(req, res) {
     })
 };
 
-// Display Item update form on GET. back
+// Update program GET
 exports.program_update_get = function(req, res) {
     var o_id = new ObjectId(req.params.id);
     Program.find({ "_id": o_id  },function(err, result) {
         res.render('backend/updateprogram', {
-            title: 'Add New item',
+            title: 'MAT Pilates',
             data: result,
             user: req.user
         })
     });
 };
 
-// Handle Item update on POST. back
+// Program update POST
 exports.program_update_post = function(req, res) {
     var o_id = new ObjectId(req.params.id);
 
     var prog = {
         title: req.body.title,
         description: req.body.description,
+        time: req.body.time,
         image: req.body.image
     };
 
     Program.findOneAndUpdate({ "_id": o_id  }, { $set : prog }, {upsert: true}, function(err, doc) {
         if (err) return res.send(500, {error: err});
-        res.redirect('/admin');
+        res.redirect('/admin/program');
     });
 
 };

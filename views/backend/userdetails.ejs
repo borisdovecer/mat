@@ -3,7 +3,10 @@
 <head>
     <% include ../partials/scripts.ejs %>
 
+    <link rel="stylesheet" type="text/css" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/themes/smoothness/jquery-ui.css" media="all">
 
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js"></script>
 
 </head>
 <body class="animsition">
@@ -22,51 +25,82 @@
 
                         <div class="row form-contact" style="margin-right: 150px">
                             <div class="row main">
-                                <h3 style="padding-bottom: 10px">Korisnik AA</h3>
+                                <% if(data) { %>
+
+                                <h3 style="padding-bottom: 10px">Korisnik <%= data[0].username %></h3>
                                 <table class="shop_attributes table table-striped table-bordered">
                                     <tbody>
                                     <tr style='text-align:left; background-color:#CCC'>
-                                        <th>Ime I prezime</th>
-                                        <th>Email</th>
-                                        <th>Status</th>
-                                        <th>Expire</th>
+                                        <th>Podaci o korisniku</th>
+                                        <th>Članarina</th>
+                                        <th>Prisustvo</th>
                                     </tr>
-
-                                    <% if(data) { %>
-                                    <% data.forEach(function (user) { %>
-
 
                                     <tr>
-                                        <td><%= user.firstname %> <%= user.lastname %></td>
-                                        <td><%= user.email %></td>
                                         <td>
-                                            <form action="/admin/users/update/<%= user._id %>" method="post">
-                                                <div class="col-md-4">
-                                                    <select  class="form-control" name="role" id="role">
-                                                        <option value="<%= user.role %>"><%= user.role %></option>
-                                                        <option value="premium">Premium</option>
-                                                        <option value="regular">Regular</option>
-                                                        <option value="admin">Admin</option>
-                                                    </select>
-                                                </div>
-                                                <div class="col-md-3">
-                                                    <button  type="submit" name="Submit">Change</button>
-                                                </div>
-                                            </form>
-                                            <div class="col-md-3">
-                                                <a href="/admin/users/<%= user._id %>"><button>Detalji</button></a>
-                                            </div>
+                                            <ul>
+                                            <li><%= data[0].firstname %> <%= data[0].lastname %></li>
+                                            <li><%= data[0].email %></li>
+                                                <li><strong><%= data[0].role%></strong> korisnik</li>
+                                            <li>Premium ističe: <%= moment(data[0].expireOn).format("DD MMM YY");%></li>
+                                            <li> </li>
+                                            <li>Članarina traje do: <%= moment(data[0].membershipExpireOn).format("DD MMM YY");%></li>
+                                            <li>Broj termina: <%= data[0].brojTermina %></li>
+                                            </ul>
+
 
                                         </td>
-                                        <td><%= moment(user.expireOn).format("DD MMM YY");%></td>
+                                        <td>
+                                            <form action="/admin/users/edit/<%= data[0]._id %>" method="post">
+                                                <div class="col-md-6">
+                                                    <label>Članarina:</label>
+                                                    <p>Date: <input type="text" name="clanarina" id="datepick" value="<%= moment(data[0].membershipExpireOn).format("DD MMM YY");%>"></p>
+                                                    <label>Broj termina:</label>
+                                                    <input class="form-control" name="termin" id="termin" type="text" value="<%= data[0].brojTermina %>">
+                                                    <button  type="submit" name="Submit">Update</button>
+
+                                                </div>
+                                            </form>
+
+
+                                        </td>
+                                        <td>
+                                            <form action="/admin/users/prisustvo/<%= data[0]._id %>" method="post">
+                                                <div class="col-md-6">
+                                                    <label>Prisustvo:</label>
+                                                    <p>Date: <input type="text" name="datepick" id="datepick2"></p>
+                                                    <button  type="submit" name="Submit">Update</button>
+                                                </div>
+                                            </form>
+
+                                        </td>
+
 
 
                                     </tr>
-                                    <% })} %>
+
 
                                     </tbody>
                                 </table>
+                                <div class="col-md-3 col-sm-12 col-xs-12">
+                                    <table class="shop_attributes table table-striped table-bordered">
+                                        <tbody>
+                                        <tr style='text-align:left; background-color:#CCC'>
+                                            <th>Prisustvo</th>
 
+                                        </tr>
+                                        <% data[0].prisustvo.reverse().slice(0,12).forEach(function (d) { %>
+                                        <tr>
+
+                                            <td>
+                                                <%= moment(d).format("DD MMM YYYY");%>
+                                            </td>
+                                        </tr>
+                                        <% })%>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <% } %>
 
                             </div>
                         </div>
@@ -80,6 +114,14 @@
     </section>
 </div>
 <% include ../partials/footer.ejs %>
+<script>
+    $(function() {
+        $('#datepick').datepicker();
+    });
+    $(function() {
+        $('#datepick2').datepicker();
+    });
+</script>
 
 </body>
 </html>

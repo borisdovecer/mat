@@ -9,18 +9,14 @@ var session = require('express-session');
 var passport = require('passport');
 var config = require('./config');
 
-
 require('./passport')(passport);
 
+// Konekcija na bazu
 mongoose.connect(config.database.url);
 
-
-
+// Rute
 var index = require('./routes/index');
-var users = require('./routes/users');
 var auth = require('./routes/auth')(passport);
-
-// Rute za back
 var admin = require('./routes/backend/admin');
 
 var app = express();
@@ -49,8 +45,6 @@ app.use(passport.session());
 
 app.use('/', index);
 app.use('/admin', admin);
-
-//app.use('/users', users);
 app.use('/auth', auth);
 
 // catch 404 and forward to error handler

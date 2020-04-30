@@ -7,30 +7,56 @@
 <!-- Header -->
 <% include partials/header.ejs %>
 
-<!-- Classes Start -->
-<section class="class-area fix bg-gray pb-100 pt-95">
-  <div class="container">
+
+<section id="about" class="about-area pt-95 pb-100" >
+  <div class="container" >
     <div class="row">
-      <div class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-xs-12">
-        <div class="section-title text-center">
-          <h2>Profilna Stranica Korisnika</h2>
+        <% if (data) {%>
+      <div class="col-md-6 col-sm-12 col-xs-12">
+        <div class="about-content ">
+          <h2>Korisnik: <%= data[0].firstname %></h2>
+           <ul>
+             <li><strong><%= data[0].role %></strong> korisnik</li>
+             <li><br></li>
+             <li><%= data[0].firstname %> <%= data[0].lastname %></li>
+            <li><%= data[0].email %></li>
+               <li><br></li>
+            <li>Premium ističe: <%= moment(data[0].expireOn).format("DD MMM YY");%></li>
+               <li><br></li>
+            <li>Broj termina: <%= data[0].brojTermina %></li>
+            <li>Članarina ističe: <%= moment(data[0].membershipExpireOn).format("DD MMM YY");%></li>
+             <li><br></li>
+
+           </ul>
+
         </div>
       </div>
-    </div>
-    <div class="row">
-      <div class="col-xs-12 text-center">
-        <% if (data) {%>
-        <p><%= data[0].firstname %> <%= data[0].lastname %></p>
-        <p><%= data[0].email %></p>
-        <p><%= data[0].role %></p>
-        <p><%= moment(data[0].expireOn).format("DD MMM YY");%></p>
-        <% } %>
+      <div class="col-md-3 col-sm-12 col-xs-12">
+        <table class="shop_attributes table table-striped table-bordered">
+          <tbody>
+          <tr style='text-align:left; background-color:#CCC'>
+            <th>Prisustvo</th>
 
+          </tr>
+          <% data[0].prisustvo.reverse().slice(0,12).reverse().forEach(function (d) { %>
+          <tr>
+
+            <td>
+                <%= moment(d).format("DD MMM YYYY");%>
+            </td>
+          </tr>
+          <% })%>
+          </tbody>
+        </table>
       </div>
+
+        <% } %>
     </div>
+    <a class="banner-btn" href="/" data-text="Još informacija"><span>Još informacija</span></a>
+
   </div>
 </section>
-<!-- Class Area End -->
+
 
 <% include partials/footer.ejs %>
 <% include partials/footerscripts.ejs%>

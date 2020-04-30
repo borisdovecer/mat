@@ -1,0 +1,89 @@
+<!doctype html>
+<html class="no-js" lang="en">
+<head>
+    <% include partials/scripts.ejs %>
+
+</head>
+<body>
+<!-- Header -->
+<% include partials/header.ejs %>
+
+<!-- Classes Start -->
+<section class="class-area fix bg-gray pb-100 pt-95">
+    <div class="container">
+
+
+        <div class="row">
+
+
+            <% if(data) { %>
+            <% data.forEach(function (p) { %>
+            <div class="col-md-4 col-sm-6 col-xs-12">
+                <div class="single-table text-center" style="background-color: #419ba4">
+                    <div class="table-head" >
+                        <h2 style="color: whitesmoke" >TRENING</h2>
+                        <div class="visible-xs"><h1 style="font-size: 36px"><%= p.title %><span></span></h1></div>
+                        <div class="hidden-xs"><h1><%= p.title %><span></span></h1></div>
+
+                    </div>
+                    <div class="table-body" style="color: whitesmoke">
+                        <ul>
+                            <li>
+                                <%- p.trening %>
+
+                            </li>
+                            <li>
+                                <%- p.program %>
+                            </li>
+                            <li>
+                                <%- p.termin%>
+
+                            </li>
+                        </ul>
+                        <a href="/ponuda/<%= p.slug%>">Saznaj više</a>
+                    </div>
+                </div>
+            </div>
+
+
+            <h1><%= p.title %></h1>
+            <p> <%- p.description %> </p>
+            <% })} %>
+
+
+        </div>
+
+        <div class="row">
+
+            <div class="col-md-6 col-sm-12 col-xs-12" style="padding-top: 40px">
+                <div class="about-video active">
+
+                    <a href="#"><img src="/images/ekonomik.jpg" alt="about"></a>
+
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-12 col-xs-12" style="padding-top: 40px">
+                <div class="about-video active">
+
+                    <a href="#"><img src="/images/standard.jpg" alt="about"></a>
+
+                </div>
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="col-xs-12 text-center">
+                <a class="banner-btn mt-55" href="/#ponuda" data-text="nazad"><span>nazad</span></a>
+            </div>
+        </div>
+    </div>
+
+</section>
+<!-- Class Area End -->
+
+<% include partials/footer.ejs %>
+<% include partials/footerscripts.ejs%>
+
+
+</body>
+</html>

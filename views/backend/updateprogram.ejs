@@ -2,9 +2,7 @@
 <html>
 <head>
     <% include ../partials/scripts.ejs %>
-    <link href="https://cdn.jsdelivr.net/npm/froala-editor@latest/css/froala_editor.pkgd.min.css" rel="stylesheet" type="text/css" />
-
-
+    <script src="https://cdn.ckeditor.com/4.14.0/standard/ckeditor.js"></script>
 
 </head>
 <body class="animsition">
@@ -36,7 +34,10 @@
                                     <div class="col-md-12">
                                         <div class="form-group organic-form xs-radius">
                                             <label>Description: </label>
-                                            <textarea class="form-control"  name="description" id="description"  rows="3"><%- p.description %></textarea>
+                                            <textarea class="form-control" id="description" name="description" ><%- p.description %></textarea>
+                                            <script>
+                                                CKEDITOR.replace( 'description' );
+                                            </script>
                                         </div>
                                     </div>
                                     <div class="col-md-8">
@@ -45,7 +46,12 @@
                                             <input class="form-control" name="image" id="image" type="text" value="<%= p.image %>">
                                         </div>
                                     </div>
-
+                                    <div class="col-md-8">
+                                        <div class="form-group organic-form xs-radius">
+                                            <label>Vreme: </label>
+                                            <input class="form-control" name="time" id="time" type="text" value="<%= p.time %>">
+                                        </div>
+                                    </div>
 
                                     <div class="col-md-12">
                                         <div class="form-group organic-form xs-radius">
@@ -67,13 +73,7 @@
     </section>
 </div>
 <% include ../partials/footer.ejs %>
-<!-- Include Editor JS files. -->
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/froala-editor@latest/js/froala_editor.pkgd.min.js"></script>
 
-<!-- Initialize the editor. -->
-<script>
-    new FroalaEditor('textarea');
-</script>
 
 </body>
 </html>

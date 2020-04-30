@@ -2,19 +2,19 @@ var express = require('express');
 var router = express.Router();
 var User = require('../models/User');
 
+
 module.exports = function (passport) {
+    // Signup POST
     router.post('/signup', function (req, res) {
         var today = new Date();
-      //  var nextmonth = today.setMonth(today.getMonth() + 1);
-
         var usr = {
             username: req.body.username,
             password: req.body.password,
             firstname: req.body.firstname,
             lastname: req.body.lastname,
             email: req.body.email
-
         };
+
         User.findOne({
             username: usr.username
         }, function (err, doc) {
@@ -46,7 +46,7 @@ module.exports = function (passport) {
         })
     });
 
-
+    // Login POST
     router.post('/login', passport.authenticate('local', {
 
         failureRedirect: '/login',
@@ -54,8 +54,6 @@ module.exports = function (passport) {
     }), function (req, res) {
         res.send('hey')
     });
-
-
 
     return router;
 };

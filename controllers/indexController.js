@@ -1,34 +1,26 @@
 var User = require('../models/User');
 var Program = require('../models/programModel');
+var Ponuda = require('../models/ponudaModel');
 
 
 // Renderovanje index stranice
 module.exports.getIndex = function(req, res) {
-
     Program.find({}, function (err, prog) {
-
-
-    res.render('index', {
-        title: 'MAT Pilates',
-        user: req.user,
-        prog: prog
+        Ponuda.find({}, function (err, ponuda) {
+            res.render('index', {
+                title: 'MAT Pilates',
+                user: req.user,
+                prog: prog,
+                ponuda:ponuda
+            });
+        });
     });
-    });
-
 };
 
 
 // Renderovanje stranice o nama
 module.exports.about_get = function (req, res) {
     res.render('about', {
-        title: 'MAT Pilates',
-        user: req.user
-    });
-};
-
-// Renderovanje kontakt stranice
-module.exports.getContact = function(req, res) {
-    res.render('contact', {
         title: 'MAT Pilates',
         user: req.user
     });

@@ -2,9 +2,7 @@
 <html>
 <head>
     <% include ../partials/scripts.ejs %>
-
-
-
+    <script src="https://cdn.ckeditor.com/4.14.0/standard/ckeditor.js"></script>
 </head>
 <body class="animsition">
 <div class="shop-layout-3" id="page">
@@ -25,19 +23,22 @@
                                 <form action='/admin/videos/create' method='post'>
                                     <div class="col-md-6">
                                         <div class="form-group organic-form xs-radius">
-                                            <label>Title: </label>
+                                            <label>Naslov: </label>
                                             <input class="form-control" name="title" id="title" type="text">
                                         </div>
                                     </div>
                                     <div class="col-md-12">
                                         <div class="form-group organic-form xs-radius">
-                                            <label>Description: </label>
-                                            <textarea class="form-control"  name="description" id="description"  rows="3"></textarea>
+                                            <label>Opis: </label>
+                                            <textarea id="description" name="description"></textarea>
+                                            <script>
+                                                CKEDITOR.replace( 'description' );
+                                            </script>
                                         </div>
                                     </div>
                                     <div class="col-md-8">
                                         <div class="form-group organic-form xs-radius">
-                                            <label>Url: </label>
+                                            <label>Vimeo ID: </label>
                                             <input class="form-control" name="url" id="url" type="text">
                                         </div>
                                     </div>
@@ -52,7 +53,7 @@
                                     </div>
                                     <div class="col-md-12">
                                         <div class="form-group organic-form xs-radius">
-                                            <button class="btn btn-brand pill" type="submit" name="Submit">ADD Video</button>
+                                            <button class="btn btn-brand pill" type="submit" name="Submit">Add Video</button>
                                         </div>
                                     </div>
                                 </form>
@@ -70,6 +71,7 @@
     </section>
 </div>
 <% include ../partials/footer.ejs %>
+
 
 </body>
 </html>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <% include ../partials/scripts.ejs %>
+    <script src="https://cdn.ckeditor.com/4.14.0/standard/ckeditor.js"></script>
+
+</head>
+<body class="animsition">
+<div class="shop-layout-3" id="page">
+    <% include ../partials/header.ejs %>
+
+    <section >
+        <div class="container" style="width: 100%">
+            <div class="row">
+                <% include ../partials/adminheader.ejs %>
+
+
+                <div class="col-md-8">
+
+                    <div class="container text-left">
+
+                        <div class="row form-contact" style="margin-right: 150px">
+                            <div class="row main">
+                                <form action='/admin/ponuda/create' method='post'>
+                                    <div class="col-md-6">
+                                        <div class="form-group organic-form xs-radius">
+                                            <label>Naslov: </label>
+                                            <input class="form-control" name="title" id="title" type="text">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="form-group organic-form xs-radius">
+                                            <label>Trening: </label>
+                                            <textarea class="form-control" id="trening" name="trening" ></textarea>
+                                            <script>
+                                                CKEDITOR.replace( 'trening' );
+                                            </script>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="form-group organic-form xs-radius">
+                                            <label>Program: </label>
+                                            <textarea class="form-control" id="program" name="program" ></textarea>
+                                            <script>
+                                                CKEDITOR.replace( 'program' );
+                                            </script>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="form-group organic-form xs-radius">
+                                            <label>Termin: </label>
+                                            <textarea class="form-control" id="termin" name="termin" ></textarea>
+                                            <script>
+                                                CKEDITOR.replace( 'termin' );
+                                            </script>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="form-group organic-form xs-radius">
+                                            <label>Opis </label>
+                                            <textarea class="form-control" id="description" name="description" ></textarea>
+                                            <script>
+                                                CKEDITOR.replace( 'description' );
+                                            </script>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-12">
+                                        <div class="form-group organic-form xs-radius">
+                                            <button class="btn btn-brand pill" type="submit" name="Submit">Add Program</button>
+                                        </div>
+                                    </div>
+                                </form>
+
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+    </section>
+</div>
+
+<% include ../partials/footer.ejs %>
+
+</body>
+</html>
+
+
+
