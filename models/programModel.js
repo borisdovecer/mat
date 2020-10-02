@@ -13,7 +13,9 @@ var programSchema = new schema({
     image: {
         type: String
     },
-
+    time: {
+        type: String
+    },
     createdOn: {
         type: Date
     },

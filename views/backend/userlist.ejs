@@ -55,6 +55,9 @@
                                                     <button  type="submit" name="Submit">Change</button>
                                                 </div>
                                             </form>
+                                            <div class="col-md-3">
+                                                <a href="/admin/users/<%= user._id %>"><button>Detalji</button></a>
+                                            </div>
 
                                         </td>
                                         <td><%= moment(user.expireOn).format("DD MMM YY");%></td>
